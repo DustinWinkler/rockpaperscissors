@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head></head>
+<html>
+
+<button onclick="game()">Play a round</button>
+<div id='playerScore'>Your score: 0</div>
+<div id='computerScore'>Computer score: 0</div>
+
+</html>
+
+<script>
+ const options = ['Rock', 'Paper', 'Scissors']
+ const computerSelection = computerPlay()
+ let playerScore = 0;
+ let computerScore = 0;
+
+ function capitalize(text) {
+     return text[0].toUpperCase() + text.slice(1).toLowerCase();
+ }
+
+ function computerPlay() {
+    return options[Math.floor(Math.random() * 3)];
+ }
+
+function round(computerSelection, playerSelection) {
+    if (!options.includes(capitalize(playerSelection))) {
+         alert ('That\'s not one the choices')
+    }
+     
+    else if (capitalize(playerSelection) == computerSelection) {
+        alert ('Its\'s a draw you both played ' + capitalize(playerSelection))
+    }
+    else if (
+        (capitalize(playerSelection) == 'Rock' && computerSelection == 'Scissors') ||
+        (capitalize(playerSelection) == 'Paper' && computerSelection == 'Rock') ||
+        (capitalize(playerSelection) == 'Scissors' && computerSelection == 'Paper')
+    ) {
+        playerScore++;
+        alert ('You win! ' + capitalize(playerSelection) + ' beats ' + computerSelection)
+    }
+    else {
+        computerScore++;
+        alert ("You lose! " + computerSelection + ' beats ' + capitalize(playerSelection))
+    }
+}
+function game() {
+    let playerSelection = prompt('Rock, Paper or Scissors?');
+    let computerSelection = computerPlay();
+    (round(computerSelection, playerSelection))
+    document.getElementById('playerScore').textContent = 'Your score: ' + playerScore
+    document.getElementById('computerScore').textContent = 'Computer score: ' + computerScore
+    
+}
+
+</script>
